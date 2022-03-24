@@ -36,13 +36,11 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    child: ReusableCard(
-                      color: selectedGender == Gender.male ? activeContainerColor : inactiveContainerColor,
-                      cardChild: IconContent(
-                        icon: Icons.male,
-                        label: 'MALE',
-                      ),
+                  child: ReusableCard(
+                    color: selectedGender == Gender.male ? activeContainerColor : inactiveContainerColor,
+                    cardChild: IconContent(
+                      icon: Icons.male,
+                      label: 'MALE',
                     ),
                     onTap: () {
                       setState(() {
@@ -52,13 +50,11 @@ class _InputPageState extends State<InputPage> {
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    child: ReusableCard(
-                      color: selectedGender == Gender.female ? activeContainerColor : inactiveContainerColor,
-                      cardChild: IconContent(
-                        icon: Icons.female,
-                        label: 'FEMALE',
-                      ),
+                  child: ReusableCard(
+                    color: selectedGender == Gender.female ? activeContainerColor : inactiveContainerColor,
+                    cardChild: IconContent(
+                      icon: Icons.female,
+                      label: 'FEMALE',
                     ),
                     onTap: () {
                       setState(() {
@@ -98,10 +94,6 @@ class _InputPageState extends State<InputPage> {
             height: bottomContainerHeight,
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
       ),
     );
   }
