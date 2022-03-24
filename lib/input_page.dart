@@ -21,6 +21,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Color maleCardColor = inactiveContainerColor;
   Color femaleCardColor = inactiveContainerColor;
+  Gender selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +38,15 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     child: ReusableCard(
-                      color: maleCardColor,
+                      color: selectedGender == Gender.male ? activeContainerColor : inactiveContainerColor,
                       cardChild: IconContent(
                         icon: Icons.male,
                         label: 'MALE',
                       ),
                     ),
                     onTap: () {
-                      print('male card pressed');
                       setState(() {
-                        updateColor(Gender.male);
+                        selectedGender = Gender.male;
                       });
                     },
                   ),
@@ -54,7 +54,7 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     child: ReusableCard(
-                      color: femaleCardColor,
+                      color: selectedGender == Gender.female ? activeContainerColor : inactiveContainerColor,
                       cardChild: IconContent(
                         icon: Icons.female,
                         label: 'FEMALE',
@@ -62,8 +62,7 @@ class _InputPageState extends State<InputPage> {
                     ),
                     onTap: () {
                       setState(() {
-                        print('female card pressed');
-                        updateColor(Gender.female);
+                        selectedGender = Gender.female;
                       });
                     },
                   ),
@@ -105,25 +104,5 @@ class _InputPageState extends State<InputPage> {
         child: Icon(Icons.add),
       ),
     );
-  }
-
-  void updateColor(Gender gender) {
-    if (gender == Gender.male) {
-      if (maleCardColor == inactiveContainerColor) {
-        maleCardColor = activeContainerColor;
-        femaleCardColor = inactiveContainerColor;
-      } else {
-        maleCardColor = inactiveContainerColor;
-      }
-    }
-
-    if (gender == Gender.female) {
-      if (femaleCardColor == inactiveContainerColor) {
-        femaleCardColor = activeContainerColor;
-        maleCardColor = inactiveContainerColor;
-      } else {
-        femaleCardColor = inactiveContainerColor;
-      }
-    }
   }
 }
