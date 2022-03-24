@@ -1,12 +1,8 @@
+import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
 
 import 'icon_content.dart';
-
-const activeContainerColor = Color(0xFF1D1E33);
-const inactiveContainerColor = Color(0xFF111328);
-const bottomContainerHeight = 80.0;
-const bottomContainerColor = Color(0xFFEB1555);
 
 enum Gender {
   male,
@@ -19,9 +15,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveContainerColor;
-  Color femaleCardColor = inactiveContainerColor;
   Gender selectedGender;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +32,7 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.male ? activeContainerColor : inactiveContainerColor,
+                    color: selectedGender == Gender.male ? kActiveContainerColor : kInactiveContainerColor,
                     cardChild: IconContent(
                       icon: Icons.male,
                       label: 'MALE',
@@ -51,7 +46,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.female ? activeContainerColor : inactiveContainerColor,
+                    color: selectedGender == Gender.female ? kActiveContainerColor : kInactiveContainerColor,
                     cardChild: IconContent(
                       icon: Icons.female,
                       label: 'FEMALE',
@@ -68,7 +63,43 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              color: activeContainerColor,
+              color: kActiveContainerColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    min: 120.0,
+                    max: 220.0,
+                    activeColor: Color(0xFFEB1555),
+                    inactiveColor: Color(0xFF8D8E98),
+                    onChanged: (double value) {
+                      setState(() {
+                        height = value.round();
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -76,22 +107,22 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    color: activeContainerColor,
+                    color: kActiveContainerColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: activeContainerColor,
+                    color: kActiveContainerColor,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            color: bottomContainerColor,
+            color: kBottomContainerColor,
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           ),
         ],
       ),
