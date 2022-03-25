@@ -3,21 +3,16 @@ import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 
-enum Status {
-  overweight,
-  normal,
-  underweight,
-}
-
-Map<Status, String> bmiStatusMap = {
-  Status.overweight: 'You are overweight',
-  Status.normal: 'You are healthy',
-  Status.underweight: 'You are underweight',
-};
-
 class ResultsPage extends StatelessWidget {
-  Status status = Status.overweight;
-  double bmi = 20.0;
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
+  ResultsPage({
+    @required this.bmiResult,
+    @required this.resultText,
+    @required this.interpretation,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +44,16 @@ class ResultsPage extends StatelessWidget {
                 children: [
                   Center(
                     child: Text(
-                      status.name.toUpperCase(),
+                      bmiResult.toUpperCase(),
                       style: kResultTextStyle,
                     ),
                   ),
                   Text(
-                    bmi.toString(),
+                    resultText,
                     style: kLargeNumberTextStyle,
                   ),
                   Text(
-                    bmiStatusMap[status],
+                    interpretation,
                     style: kBodyTextStyle,
                   ),
                 ],
@@ -67,7 +62,7 @@ class ResultsPage extends StatelessWidget {
           ),
           BottomButton(
             buttonTitle: 'RE-CALCULATE',
-            onTap: () => Navigator.pop,
+            onTap: () => Navigator.pop(context),
           ),
         ],
       ),

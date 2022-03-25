@@ -31,7 +31,7 @@ const kNumberTextStyle = TextStyle(
 );
 
 const kLargeNumberTextStyle = TextStyle(
-  fontSize: 100.0,
+  fontSize: 60.0,
   fontWeight: FontWeight.w900,
 );
 
